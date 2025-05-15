@@ -4,10 +4,8 @@ public class Menu {
     public void menu() {
         Scanner sc = new Scanner(System.in);
         boolean bandera1 = true;
-        boolean bandera2 = true;
-        boolean bandera3 = true;
         int opt_tipoEstudiante = 0;
-        int opt_Inge = 0;
+        Metodos m = new Metodos();
 
         while (bandera1) {
             System.out.println("Bienvenido al programa de equipos electronicos San Juan de Dios");
@@ -16,41 +14,25 @@ public class Menu {
             System.out.println("3. Salir");
             System.out.println();
 
+            while (!sc.hasNextInt()) {
+                System.out.println("Ingrese una opcion con numeros del 1 al 3");
+                sc.next();
+            }
             opt_tipoEstudiante = sc.nextInt();
 
             if (opt_tipoEstudiante == 1) {
-                while (bandera2) {
-                    System.out.println("Opciones de ingenieria");
-                    System.out.println("Registrar prestamo de un equipo");
-                    System.out.println("Devolucion del equipo");
-                    System.out.println("Buscar equipo");
-                    System.out.println("Volver a menu principal");
-                    System.out.println();
-                    opt_Inge = sc.nextInt();
+               m.Menu_ingenieria();
+            }
+            if (opt_tipoEstudiante == 2) {
+               m.Menu_Diseño();
+            }
+            if (opt_tipoEstudiante == 3) {
+                bandera1 = false;
+            }
 
-                    switch (opt_Inge) {
-                        case 1:
-                            System.out.println("Maintenance\n");
-                            break;
-                        case 2:
-                            System.out.println("Maintenance\n");
-                            break;
-                        case 3:
-                            System.out.println("Maintenance\n");
-                            break;
-                        case 4:
-                            System.out.println("Maintenance\n");
-                            break;
-                        case 5:
-                            System.out.println("Maintenance\n");
-                            break;
-                        default:
-                            System.out.println("opcion invalida\n");
-                            break;
-                    }
-
-                }
-
+            if (opt_tipoEstudiante < 1 || opt_tipoEstudiante > 3) {
+                System.out.println("Opcion invalida");
+                
             }
         }
     }
