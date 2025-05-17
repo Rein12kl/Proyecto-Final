@@ -7,6 +7,7 @@ public class Menu {
         int opt_tipoEstudiante = 0;
         Metodos m = new Metodos();
 
+        //Prueba alexa
         while (bandera1) {
             System.out.println("Bienvenido al programa de equipos electronicos San Juan de Dios");
             System.out.println("1. Estudiante de ingenieria");
