@@ -1,9 +1,10 @@
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Metodos {
     Scanner sc = new Scanner(System.in);
 
-    public void Menu_ingenieria() {
+    public void Menu_ingenieria(LinkedList<ObjEstudiante_Ingenieria> L1, LinkedList<ObjComputador_Portatil> L2) {
         boolean bandera = true;
         int opt_Inge = 0;
 
@@ -23,7 +24,7 @@ public class Metodos {
 
             switch (opt_Inge) {
                 case 1:
-                    System.out.println("Maintenance\n");
+                    IngresarEstudiante(L1);
                     break;
                 case 2:
                     System.out.println("Maintenance\n");
@@ -46,7 +47,7 @@ public class Metodos {
 
     }
 
-    public void Menu_Diseño() {
+    public void Menu_Diseño(LinkedList<ObjEstudiante_Diseño> L1, LinkedList<ObjTableta_Grafica> L2) {
         boolean bandera = true;
         while (bandera) {
             System.out.println("Opciones de ingenieria");
@@ -87,9 +88,32 @@ public class Metodos {
 
     }
 
-    public void IngresarEstudiante() {
+    public void IngresarEstudiante(LinkedList<ObjEstudiante_Ingenieria> L1) {
+        boolean bandera = true;
+        int dec = 1;
+        while (bandera) {
 
-        System.out.println("Se ingreso estiudiante exitosamente ");
+            ObjEstudiante_Ingenieria o = new ObjEstudiante_Ingenieria();
+            o.setNombre(sc.nextLine());
+            o.setApellido(sc.nextLine());
+            o.setCedula(sc.nextLine());
+            o.setNumeroSemestre(sc.nextInt());
+            o.setPromedioAcumulado(sc.nextFloat());
+            L1.add(o);
+
+            System.out.println("Se ingreso estiudiante exitosamente ");
+
+            System.out.println("Desea ingresar un nuevo estudiante? 1 si, 2 no");
+            dec = sc.nextInt();
+
+            if(dec == 1){
+                bandera = true;
+            }
+
+            if (dec == 2) {
+                bandera = false;
+            }
+        }
     }
 
     public void RegistrarPrestamoEquipo() {

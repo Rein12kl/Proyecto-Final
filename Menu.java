@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Menu {
@@ -6,8 +7,15 @@ public class Menu {
         boolean bandera1 = true;
         int opt_tipoEstudiante = 0;
         Metodos m = new Metodos();
+<<<<<<< HEAD
+        LinkedList ingenieria = new LinkedList<ObjEstudiante_Ingenieria>();
+        LinkedList diseño = new LinkedList<ObjEstudiante_Diseño>();
+        LinkedList Computador = new LinkedList<ObjComputador_Portatil>();
+        LinkedList Tableta = new LinkedList<ObjTableta_Grafica>();
+=======
 
     
+>>>>>>> be31b19b25201be420a5fd305716c0af7542a8d8
         while (bandera1) {
             System.out.println("Bienvenido al programa de equipos electronicos San Juan de Dios");
             System.out.println("1. Estudiante de ingenieria");
@@ -22,10 +30,10 @@ public class Menu {
             opt_tipoEstudiante = sc.nextInt();
 
             if (opt_tipoEstudiante == 1) {
-               m.Menu_ingenieria();
+                m.Menu_ingenieria(ingenieria, Computador);
             }
             if (opt_tipoEstudiante == 2) {
-               m.Menu_Diseño();
+                m.Menu_Diseño(diseño, Tableta);
             }
             if (opt_tipoEstudiante == 3) {
                 bandera1 = false;
@@ -33,7 +41,7 @@ public class Menu {
 
             if (opt_tipoEstudiante < 1 || opt_tipoEstudiante > 3) {
                 System.out.println("Opcion invalida");
-                
+
             }
         }
     }
