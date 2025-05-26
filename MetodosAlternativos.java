@@ -31,21 +31,61 @@ public class MetodosAlternativos {
             if (tipo == 1) {
                 ObjEstudiante_Diseño estudianteDiseno = new ObjEstudiante_Diseño();
                 System.out.print("Ingrese cédula: ");
+                while (sc.hasNextInt()){
+                    System.out.print("Ingrese una cédula válida.");
+                    sc.next();
+                } 
+                String cedula = sc.next();  
                 estudianteDiseno.setCedula(sc.nextLine());
                 System.out.print("Ingrese nombre: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un nombre válido.");
+                    sc.next();
+                }
+                String nombre = sc.next();
                 estudianteDiseno.setNombre(sc.nextLine());
+
                 System.out.print("Ingrese apellido: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un apellido válido.");
+                    sc.next();
+                }
+                String apellido = sc.next();
                 estudianteDiseno.setApellido(sc.nextLine());
+
                 System.out.print("Ingrese teléfono: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un teléfono válido.");
+                    sc.next();
+                }
+                String telefono = sc.next();
                 estudianteDiseno.setTelefono(sc.nextLine());
+
                 System.out.print("Ingrese modalidad de estudio (virtual/presencial): ");
-                estudianteDiseno.seleccionarModalidadEstudio(sc.nextLine());
+                String ModalidadEstudio = sc.next();
+                while(!ModalidadEstudio.equalsIgnoreCase("Virtual") || !ModalidadEstudio.equalsIgnoreCase("Presencial")){
+                    System.out.println("Ingrese una opción válida");  
+                    ModalidadEstudio = sc.next();         
+                }            
+                estudianteDiseno.seleccionarModalidadEstudio(ModalidadEstudio);
                 System.out.print("Ingrese cantidad de asignaturas: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese una cantidad de asignaturas válida.");
+                    sc.next();
+                }
+                int CantidadAsignatura = sc.nextInt();
                 estudianteDiseno.setCantidadAsignaturas(sc.nextInt());
                 sc.nextLine(); 
+
                 System.out.print("Ingrese serial: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un serial válido.");
+                    sc.next();
+                }
+                int Serial = sc.nextInt();
                 estudianteDiseno.setSerial(sc.nextInt());
                 sc.nextLine(); 
+
                 Estudiantes estudiantes = new Estudiantes();
                 LinkedList<ObjEstudiante_Diseño> listaDiseno = estudiantes.getEstudiantesDiseno();
                 if (listaDiseno == null) {
@@ -57,20 +97,61 @@ public class MetodosAlternativos {
             } else if (tipo == 2) {
                 ObjEstudiante_Ingenieria estudianteIngenieria = new ObjEstudiante_Ingenieria();
                 System.out.print("Ingrese cédula: ");
+                while (sc.hasNextInt()){
+                    System.out.print("Ingrese una cédula válida.");
+                    sc.next();
+                } 
+                String cedula = sc.next();
                 estudianteIngenieria.setCedula(sc.nextLine());
+
                 System.out.print("Ingrese nombre: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un nombre válido.");
+                    sc.next();
+                }
+                String nombre = sc.next();
                 estudianteIngenieria.setNombre(sc.nextLine());
+
                 System.out.print("Ingrese apellido: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un apellido válido.");
+                    sc.next();
+                }
+                String apellido = sc.next();
                 estudianteIngenieria.setApellido(sc.nextLine());
+
                 System.out.print("Ingrese teléfono: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un teléfono válido.");
+                    sc.next();
+                }
+                String telefono = sc.next();
                 estudianteIngenieria.setTelefono(sc.nextLine());
+
                 System.out.print("Ingrese número de semestre: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un semestre válido.");
+                    sc.next();
+                }
+                int NumeroSemestre = sc.nextInt();
                 estudianteIngenieria.setNumeroSemestre(sc.nextInt());
                 sc.nextLine();
+
                 System.out.print("Ingrese promedio acumulado: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese una cantidad de asignaturas válida.");
+                    sc.next();
+                }
+                float PromedioAcumulado = sc.nextFloat();
                 estudianteIngenieria.setPromedioAcumulado(sc.nextFloat());
                 sc.nextLine(); 
+
                 System.out.print("Ingrese serial: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un serial válido.");
+                    sc.next();
+                }
+                String CantidadAsignatura = sc.next();
                 estudianteIngenieria.setSerial(sc.nextLine());
 
                 Estudiantes estudiantes = new Estudiantes();
