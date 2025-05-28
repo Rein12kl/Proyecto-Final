@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class MetodosAlternativos {
     Scanner sc = new Scanner(System.in);
-
-
+    
     public void IngresarEstudiante() {
+        
         boolean continuar = true;
         while (continuar) {
             System.out.println("¿Qué tipo de estudiante desea ingresar?");
@@ -16,7 +16,7 @@ public class MetodosAlternativos {
                 System.out.print("Seleccione una opción: ");
                 if (sc.hasNextInt()) {
                     tipo = sc.nextInt();
-                    sc.nextLine(); // Limpiar buffer
+                    sc.nextLine(); 
                     if (tipo == 1 || tipo == 2) {
                         break;
                     } else {
@@ -24,21 +24,21 @@ public class MetodosAlternativos {
                     }
                 } else {
                     System.out.println("Entrada inválida. Debe ingresar un número entero.");
-                    sc.nextLine(); // Limpiar entrada inválida
+                    sc.next(); 
                 }
             }
 
             if (tipo == 1) {
                 ObjEstudiante_Diseño estudianteDiseno = new ObjEstudiante_Diseño();
                 System.out.print("Ingrese cédula: ");
-                while (sc.hasNextInt()){
+                while (sc.hasNextInt()) {
                     System.out.print("Ingrese una cédula válida.");
                     sc.next();
-                } 
-                String cedula = sc.next();  
+                }
+                String cedula = sc.next();
                 estudianteDiseno.setCedula(sc.nextLine());
                 System.out.print("Ingrese nombre: ");
-                while(!sc.hasNextInt()){
+                while (!sc.hasNextInt()) {
                     System.out.print("Ingrese un nombre válido.");
                     sc.next();
                 }
@@ -46,7 +46,7 @@ public class MetodosAlternativos {
                 estudianteDiseno.setNombre(sc.nextLine());
 
                 System.out.print("Ingrese apellido: ");
-                while(!sc.hasNextInt()){
+                while (!sc.hasNextInt()) {
                     System.out.print("Ingrese un apellido válido.");
                     sc.next();
                 }
@@ -54,7 +54,7 @@ public class MetodosAlternativos {
                 estudianteDiseno.setApellido(sc.nextLine());
 
                 System.out.print("Ingrese teléfono: ");
-                while(!sc.hasNextInt()){
+                while (!sc.hasNextInt()) {
                     System.out.print("Ingrese un teléfono válido.");
                     sc.next();
                 }
@@ -63,29 +63,31 @@ public class MetodosAlternativos {
 
                 System.out.print("Ingrese modalidad de estudio (virtual/presencial): ");
                 String ModalidadEstudio = sc.next();
-                while(!ModalidadEstudio.equalsIgnoreCase("Virtual") || !ModalidadEstudio.equalsIgnoreCase("Presencial")){
-                    System.out.println("Ingrese una opción válida");  
-                    ModalidadEstudio = sc.next();         
-                }            
-                estudianteDiseno.seleccionarModalidadEstudio(ModalidadEstudio);
+                while (true) {
+                    ModalidadEstudio = sc.nextLine();
+                    if (ModalidadEstudio.equalsIgnoreCase("virtual") || ModalidadEstudio.equalsIgnoreCase("presencial"))
+                        break;
+                    System.out.println("Ingrese una opción válida (virtual/presencial):");
+                }
+                estudianteDiseno.setModalidadEstudio(ModalidadEstudio);
+
                 System.out.print("Ingrese cantidad de asignaturas: ");
-                while(!sc.hasNextInt()){
+                while (!sc.hasNextInt()) {
                     System.out.print("Ingrese una cantidad de asignaturas válida.");
                     sc.next();
                 }
                 int CantidadAsignatura = sc.nextInt();
                 estudianteDiseno.setCantidadAsignaturas(sc.nextInt());
-                sc.nextLine(); 
+                sc.next();
 
                 System.out.print("Ingrese serial: ");
-                while(!sc.hasNextInt()){
+                while (!sc.hasNextInt()) {
                     System.out.print("Ingrese un serial válido.");
                     sc.next();
                 }
                 int Serial = sc.nextInt();
                 estudianteDiseno.setSerial(sc.nextInt());
-                sc.nextLine(); 
-
+                sc.next();
                 Estudiantes estudiantes = new Estudiantes();
                 LinkedList<ObjEstudiante_Diseño> listaDiseno = estudiantes.getEstudiantesDiseno();
                 if (listaDiseno == null) {
@@ -97,15 +99,15 @@ public class MetodosAlternativos {
             } else if (tipo == 2) {
                 ObjEstudiante_Ingenieria estudianteIngenieria = new ObjEstudiante_Ingenieria();
                 System.out.print("Ingrese cédula: ");
-                while (sc.hasNextInt()){
+                while (sc.hasNextInt()) {
                     System.out.print("Ingrese una cédula válida.");
                     sc.next();
-                } 
+                }
                 String cedula = sc.next();
                 estudianteIngenieria.setCedula(sc.nextLine());
 
                 System.out.print("Ingrese nombre: ");
-                while(!sc.hasNextInt()){
+                while (!sc.hasNextInt()) {
                     System.out.print("Ingrese un nombre válido.");
                     sc.next();
                 }
@@ -113,7 +115,7 @@ public class MetodosAlternativos {
                 estudianteIngenieria.setNombre(sc.nextLine());
 
                 System.out.print("Ingrese apellido: ");
-                while(!sc.hasNextInt()){
+                while (!sc.hasNextInt()) {
                     System.out.print("Ingrese un apellido válido.");
                     sc.next();
                 }
@@ -121,7 +123,7 @@ public class MetodosAlternativos {
                 estudianteIngenieria.setApellido(sc.nextLine());
 
                 System.out.print("Ingrese teléfono: ");
-                while(!sc.hasNextInt()){
+                while (!sc.hasNextInt()) {
                     System.out.print("Ingrese un teléfono válido.");
                     sc.next();
                 }
@@ -129,7 +131,7 @@ public class MetodosAlternativos {
                 estudianteIngenieria.setTelefono(sc.nextLine());
 
                 System.out.print("Ingrese número de semestre: ");
-                while(!sc.hasNextInt()){
+                while (!sc.hasNextInt()) {
                     System.out.print("Ingrese un semestre válido.");
                     sc.next();
                 }
@@ -138,22 +140,21 @@ public class MetodosAlternativos {
                 sc.nextLine();
 
                 System.out.print("Ingrese promedio acumulado: ");
-                while(!sc.hasNextInt()){
+                while (!sc.hasNextInt()) {
                     System.out.print("Ingrese una cantidad de asignaturas válida.");
                     sc.next();
                 }
                 float PromedioAcumulado = sc.nextFloat();
                 estudianteIngenieria.setPromedioAcumulado(sc.nextFloat());
-                sc.nextLine(); 
+                sc.nextLine();
 
                 System.out.print("Ingrese serial: ");
-                while(!sc.hasNextInt()){
+                while (!sc.hasNextInt()) {
                     System.out.print("Ingrese un serial válido.");
                     sc.next();
                 }
-                String CantidadAsignatura = sc.next();
+                String Serial = sc.next();
                 estudianteIngenieria.setSerial(sc.nextLine());
-
                 Estudiantes estudiantes = new Estudiantes();
                 LinkedList<ObjEstudiante_Ingenieria> listaIngenieria = estudiantes.getEstudiantesIngenieria();
                 if (listaIngenieria == null) {
@@ -179,10 +180,13 @@ public class MetodosAlternativos {
             if (!respuesta.equalsIgnoreCase("s")) {
                 continuar = false;
             }
+
         }
+        
     }
 
     public void IngresarInventario() {
+        Inventario inventario = new Inventario();
         boolean continuar = true;
         while (continuar) {
             System.out.println("¿Qué tipo de equipo desea ingresar?");
@@ -193,7 +197,7 @@ public class MetodosAlternativos {
                 System.out.print("Seleccione una opción: ");
                 if (sc.hasNextInt()) {
                     tipo = sc.nextInt();
-                    sc.nextLine(); 
+                    sc.next(); 
                     if (tipo == 1 || tipo == 2) {
                         break;
                     } else {
@@ -201,28 +205,106 @@ public class MetodosAlternativos {
                     }
                 } else {
                     System.out.println("Entrada inválida. Debe ingresar un número entero.");
-                    sc.nextLine(); 
+                    sc.next(); 
                 }
             }
 
             if (tipo == 1) {
                 ObjComputador_Portatil computador = new ObjComputador_Portatil();
                 System.out.print("Ingrese serial: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un serial válido.");
+                    sc.next();
+                }
+                String Serial= sc.next();
                 computador.setSerial(sc.nextLine());
+                
                 System.out.print("Ingrese marca: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese una Marca válido.");
+                    sc.next();
+                }
+                String Marca= sc.next();
                 computador.setMarca(sc.nextLine());
+
                 System.out.print("Ingrese tamaño (pulgadas): ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un tamaño válido.");
+                    sc.next();
+                }
+                float Tamano= sc.nextFloat();
                 computador.setTamano(sc.nextFloat());
                 sc.nextLine(); 
-                System.out.print("Ingrese precio: ");
-                computador.setPrecio(sc.nextFloat());
-                sc.nextLine(); 
-                System.out.print("Ingrese sistema operativo (W7/W10/W11): ");
-                computador.setSistemaOperativo(sc.nextLine());
-                System.out.print("Ingrese procesador (AMD Ryzen/Intel Core i5): ");
-                computador.setProcesador(sc.nextLine());
 
-                Inventario inventario = new Inventario();
+                System.out.print("Ingrese precio: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un precio válido.");
+                    sc.next();
+                }
+                float Precio= sc.nextFloat();
+                computador.setPrecio(sc.nextFloat());
+                sc.next(); 
+
+                
+                String sistemaOperativo = "";
+                while (true) {
+                    System.out.print("Seleccione un sistema operativo");
+                    System.out.println("1. Windows 7 (W7)");
+                    System.out.println("2. Windows 10 (W10)");
+                    System.out.println("3. Windows 11 (W11)");
+                    if (sc.hasNextInt()) {
+                        int opcion = sc.nextInt();
+                        sc.nextLine(); 
+                        switch (opcion) {
+                            case 1:
+                                sistemaOperativo = "W7";
+                                break;
+                            case 2:
+                                sistemaOperativo = "W10";
+                                break;
+                            case 3:
+                                sistemaOperativo = "W11";
+                                break;
+                            default:
+                                System.out.println("Opción no válida. Intente nuevamente.");
+                                continue;
+                        }
+                        break;
+                    } else {
+                        System.out.println("Entrada inválida. Ingrese un número.");
+                        sc.next(); 
+                    }
+                }
+                computador.setSistemaOperativo(sistemaOperativo);
+
+                String procesador = "";
+                while (true) {
+                    System.out.println("Seleccione procesador:");
+                    System.out.println("1. AMD Ryzen");
+                    System.out.println("2. Intel Core i5");
+                    System.out.print("Opción: ");
+                    if (sc.hasNextInt()) {
+                        int opcion = sc.nextInt();
+                        sc.next(); 
+                        switch (opcion) {
+                            case 1:
+                                procesador = "AMD Ryzen";
+                                break;
+                            case 2:
+                                procesador = "Intel Core i5";
+                                break;
+                            default:
+                                System.out.println("Opción no válida. Intente nuevamente.");
+                                continue;
+                        }
+                        break;
+                    } else {
+                        System.out.println("Entrada inválida. Ingrese un número.");
+                        sc.next(); 
+                    }
+                }
+                computador.setProcesador(procesador);
+
                 LinkedList<ObjComputador_Portatil> listaComputadores = inventario.getLista_computadores();
                 if (listaComputadores == null) {
                     listaComputadores = new LinkedList<>();
@@ -233,23 +315,80 @@ public class MetodosAlternativos {
             } else if (tipo == 2) {
                 ObjTableta_Grafica tableta = new ObjTableta_Grafica();
                 System.out.print("Ingrese serial: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un serial válido.");
+                    sc.next();
+                }
+                String Serial= sc.next();
                 tableta.setSerial(sc.nextLine());
-                System.out.print("Ingrese marca: ");
-                tableta.setMarca(sc.nextLine());
-                System.out.print("Ingrese tamaño (pulgadas): ");
-                tableta.setTamano(sc.nextFloat());
-                sc.nextLine(); 
-                System.out.print("Ingrese precio: ");
-                tableta.setPrecio(sc.nextFloat());
-                sc.nextLine(); 
-                System.out.print("Ingrese almacenamiento (256/512/1024 GB): ");
-                tableta.seleccionarAlmacenamiento(sc.nextInt());
-                sc.nextLine(); // Limpiar buffer
-                System.out.print("Ingrese peso (kg): ");
-                tableta.setPeso(sc.nextFloat());
-                sc.nextLine(); 
 
-                Inventario inventario = new Inventario();
+                System.out.print("Ingrese marca: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese una Marca válido.");
+                    sc.next();
+                }
+                String Marca= sc.next();
+                tableta.setMarca(sc.nextLine());
+
+                System.out.print("Ingrese tamaño (pulgadas): ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un tamaño válido.");
+                    sc.next();
+                }
+                float Tamano= sc.nextFloat();
+                tableta.setTamano(sc.nextFloat());
+                sc.next(); 
+
+                System.out.print("Ingrese precio: ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un precio válido.");
+                    sc.next();
+                }
+                float Precio= sc.nextFloat();
+                tableta.setPrecio(sc.nextFloat());
+                sc.next(); 
+
+                System.out.print("Seleccione un almacenamiento");
+                int almacenamiento = 0;
+                while(true){
+                    System.out.println("1. 256 GB");
+                    System.out.println("2. 512 GB");
+                    System.out.println("3. 1024 GB");
+                
+                if(sc.hasNextInt()){
+                    int opcion = sc.nextInt();
+            switch (opcion) {
+                case 1:
+                    almacenamiento = 256;
+                    break;
+                case 2:
+                    almacenamiento = 512;
+                    break;
+                case 3:
+                    almacenamiento = 1024;
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente de nuevo.");
+                    continue;
+                }
+                break;
+                }
+                else{
+                    System.out.println("Entrada inválida. Debe ingresar una opción válida.");
+                    sc.next(); 
+                } 
+                tableta.setAlmacenamiento(almacenamiento);
+
+                System.out.print("Ingrese peso (kg): ");
+                while(!sc.hasNextInt()){
+                    System.out.print("Ingrese un peso válido.");
+                    sc.next();
+                }
+                float Peso= sc.nextFloat();
+                tableta.setPeso(sc.nextFloat());
+                sc.next(); 
+
+                
                 LinkedList<ObjTableta_Grafica> listaTabletas = inventario.getLista_impresoras();
                 if (listaTabletas == null) {
                     listaTabletas = new LinkedList<>();
@@ -257,14 +396,15 @@ public class MetodosAlternativos {
                 listaTabletas.add(tableta);
                 inventario.setLista_impresoras(listaTabletas);
                 System.out.println("Tableta Gráfica ingresada exitosamente.");
-            } else {
+            } //este coso sobra pero no sé por qué
+            else {
                 System.out.println("Opción no válida.");
             }
 
             System.out.print("¿Desea ingresar otro equipo? (s/n): ");
             String respuesta;
             while (true) {
-                respuesta = sc.nextLine();
+                respuesta = sc.next();
                 if (respuesta.equalsIgnoreCase("s") || respuesta.equalsIgnoreCase("n")) {
                     break;
                 } else {
@@ -292,7 +432,7 @@ public class MetodosAlternativos {
                 System.out.print("Seleccione una opción: ");
                 if (sc.hasNextInt()) {
                     tipoEstudiante = sc.nextInt();
-                    sc.nextLine(); // Limpiar buffer
+                    sc.next(); 
                     if (tipoEstudiante == 1 || tipoEstudiante == 2) {
                         break;
                     } else {
@@ -300,7 +440,7 @@ public class MetodosAlternativos {
                     }
                 } else {
                     System.out.println("Entrada inválida. Debe ingresar un número entero.");
-                    sc.nextLine(); // Limpiar entrada inválida
+                    sc.nextLine(); 
                 }
             }
 
@@ -320,17 +460,17 @@ public class MetodosAlternativos {
                     }
                 } else {
                     System.out.println("Entrada inválida. Debe ingresar un número entero.");
-                    sc.nextLine(); // Limpiar entrada inválida
+                    sc.next(); // Limpiar entrada inválida
                 }
             }
 
             // Preguntar por la cédula del estudiante
             System.out.print("Ingrese la cédula del estudiante: ");
-            String cedula = sc.nextLine();
+            String cedula = sc.next();
 
             // Preguntar por el serial del inventario
             System.out.print("Ingrese el serial del inventario: ");
-            String serial = sc.nextLine();
+            String serial = sc.next();
 
             // Crear objeto Prestamo
             Prestamo prestamo = new Prestamo();
@@ -354,7 +494,8 @@ public class MetodosAlternativos {
                         }
                     }
                 }
-                if (estudianteObj != null) break;
+                if (estudianteObj != null)
+                    break;
             }
 
             // Buscar el inventario por serial
@@ -374,7 +515,8 @@ public class MetodosAlternativos {
                         }
                     }
                 }
-                if (inventarioObj != null) break;
+                if (inventarioObj != null)
+                    break;
             }
 
             if (estudianteObj != null && inventarioObj != null) {
