@@ -7,15 +7,12 @@ public class Menu {
         boolean bandera1 = true;
         int opt_tipoEstudiante = 0;
         Metodos m = new Metodos();
-<<<<<<< HEAD
+
         LinkedList ingenieria = new LinkedList<ObjEstudiante_Ingenieria>();
         LinkedList diseño = new LinkedList<ObjEstudiante_Diseño>();
         LinkedList Computador = new LinkedList<ObjComputador_Portatil>();
         LinkedList Tableta = new LinkedList<ObjTableta_Grafica>();
-=======
 
-    
->>>>>>> be31b19b25201be420a5fd305716c0af7542a8d8
         while (bandera1) {
             System.out.println("Bienvenido al programa de equipos electronicos San Juan de Dios");
             System.out.println("1. Estudiante de ingenieria");

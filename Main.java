@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int opt1 = 0;
         MetodosAlternativos m = new MetodosAlternativos();
 
         LinkedList<Estudiantes> listaEstudiantes = new LinkedList<>();
@@ -20,36 +21,35 @@ public class Main {
             System.out.println("4. Salir");
             System.out.print("Seleccione una opción: ");
 
-            String opcion = sc.nextLine();
+            while (!sc.hasNextInt()) {
+                System.out.println("Ingrese un valor numerico");
+                sc.next();
+            }
+            opt1 = sc.nextInt();
 
-            switch (opcion) {
-                case "1":
-                    Estudiantes estudiante = m.IngresarEstudiante(); //revisar esto
-                    if (estudiante != null) {
-                        listaEstudiantes.add(estudiante);
-                    }
+            switch (opt1) {
+                case 1:
+                    m.IngresarEstudiante();
                     break;
-                case "2":
-                    Inventario inventario = m.IngresarInventario();//revisar esto
-                    if (inventario != null) {
-                        listaInventarios.add(inventario);
-                    }
+            
+                case 2:
+                    m.IngresarInventario();
                     break;
-                case "3":
-                    m.RegistrarPrestamoEquipo(listaInventarios, listaEstudiantes);
+                
+                case 3:
+                    m.RegistrarPrestamoEquipo();
                     break;
-                case "4":
-                    System.out.println("Saliendo del sistema...");
+                
+                case 4:
                     salir = true;
                     break;
+                    
                 default:
-                    System.out.println("Opción inválida. Intente nuevamente.");
+                    System.out.println("opcion invalida");
+                    break;
             }
+
         }
-
-        sc.close();
     }
 
-    
-    }
-
+}
