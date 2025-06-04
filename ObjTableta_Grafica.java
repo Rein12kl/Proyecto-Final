@@ -52,6 +52,11 @@ public class ObjTableta_Grafica {
     public void setPeso(float peso) {
         Peso = peso;
     }
-    
-
+    public void seleccionarAlmacenamiento(int almacenamiento) {
+        if (almacenamiento == 256 || almacenamiento == 512 || almacenamiento == 1024) {
+            this.Almacenamiento = almacenamiento;
+        } else {
+            throw new IllegalArgumentException("Almacenamiento no válido. Debe ser 256, 512 o 1024 (1TB) GB.");
+        }
+    }
 }
