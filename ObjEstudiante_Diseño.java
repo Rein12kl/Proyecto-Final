@@ -1,3 +1,4 @@
+
 public class ObjEstudiante_Diseño{
 
     private String Cedula;
@@ -7,6 +8,7 @@ public class ObjEstudiante_Diseño{
     private String ModalidadEstudio; //virtual o presencial
     private int CantidadAsignaturas;
     private int Serial;
+    private boolean EnPrestamo;
     public ObjEstudiante_Diseño() {
     }
     public ObjEstudiante_Diseño(String cedula, String nombre, String apellido, String telefono, String modalidadEstudio,
@@ -61,11 +63,12 @@ public class ObjEstudiante_Diseño{
     public void setSerial(int serial) {
         Serial = serial;
     }
-    public void seleccionarModalidadEstudio(String modalidad) {
-        if (modalidad.equalsIgnoreCase("virtual") || modalidad.equalsIgnoreCase("presencial")) {
-            this.ModalidadEstudio = modalidad;
-        } else {
-            throw new IllegalArgumentException("Modalidad no válida. Debe ser 'virtual' o 'presencial'.");
-        }
+    public boolean isEnPrestamo() {
+        return EnPrestamo;
     }
+    public void setEnPrestamo(boolean enPrestamo) {
+        EnPrestamo = enPrestamo;
+    }   
+
+
 }
