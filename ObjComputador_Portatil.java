@@ -1,3 +1,4 @@
+
 public class ObjComputador_Portatil {
 
     private String Serial;
@@ -6,6 +7,8 @@ public class ObjComputador_Portatil {
     private float Precio;
     private String SistemaOperativo; // crear un metodo para escoger entre W7, W10 o W11
     private String Procesador; // crear metodo para escoger entre AMD Ryzen o Intel Core i5
+    private boolean prestado;
+
     public ObjComputador_Portatil() {
     }
     public ObjComputador_Portatil(String serial, String marca, float tamano, float precio, String sistemaOperativo,
@@ -53,7 +56,12 @@ public class ObjComputador_Portatil {
     public void setProcesador(String procesador) {
         Procesador = procesador;
     }
-    
+    public boolean isPrestado() {
+        return prestado;
+    }
+    public void setPrestado(boolean prestado) {
+        this.prestado = prestado;
+    }
 
 
 }
