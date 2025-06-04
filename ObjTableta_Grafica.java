@@ -1,3 +1,4 @@
+
 public class ObjTableta_Grafica {
     
     private String Serial;
@@ -6,6 +7,7 @@ public class ObjTableta_Grafica {
     private float Precio;
     private int Almacenamiento; //hay que hacer un método solo se puede 256 GB, 512 o 1 tb
     private float Peso; // se debe especificar que sea en kg
+    private boolean Prestado;
     public ObjTableta_Grafica() {
     }
     public ObjTableta_Grafica(String serial, String marca, float tamano, float precio, int almacenamiento, float peso) {
@@ -52,11 +54,11 @@ public class ObjTableta_Grafica {
     public void setPeso(float peso) {
         Peso = peso;
     }
-    public void seleccionarAlmacenamiento(int almacenamiento) {
-        if (almacenamiento == 256 || almacenamiento == 512 || almacenamiento == 1024) {
-            this.Almacenamiento = almacenamiento;
-        } else {
-            throw new IllegalArgumentException("Almacenamiento no válido. Debe ser 256, 512 o 1024 (1TB) GB.");
-        }
+    public boolean isPrestado() {
+        return Prestado;    
     }
+    public void setPrestado(boolean prestado) {
+        Prestado = prestado;
+    }
+
 }
