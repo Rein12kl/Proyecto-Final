@@ -9,9 +9,9 @@ public class Main {
         LinkedList<Estudiantes> estudiantes = new LinkedList<>();
         LinkedList<Prestamo> prestamos = new LinkedList<>();
 
-        // Datos de prueba para estudiantes de Diseño
+        // Datos de prueba para estudiantes de Diseño0.0
         Estudiantes estudiante1 = new Estudiantes();
-        ObjEstudiante_Diseño diseno1 = new ObjEstudiante_Diseño();
+        ObjEstudiante_Diseno diseno1 = new ObjEstudiante_Diseno();
         diseno1.setCedula("12345");
         diseno1.setNombre("Juan");
         diseno1.setApellido("Pérez");
@@ -19,7 +19,7 @@ public class Main {
         diseno1.setModalidadEstudio("virtual");
         diseno1.setCantidadAsignaturas(5);
         diseno1.setSerial(1001);
-        LinkedList<ObjEstudiante_Diseño> listaDiseno = new LinkedList<>();
+        LinkedList<ObjEstudiante_Diseno> listaDiseno = new LinkedList<>();
         listaDiseno.add(diseno1);
         estudiante1.setEstudiantesDiseno(listaDiseno);
         estudiantes.add(estudiante1);

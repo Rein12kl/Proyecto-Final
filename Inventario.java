@@ -4,6 +4,10 @@ public class Inventario {
     private LinkedList<ObjComputador_Portatil> lista_computadores;
     private LinkedList<ObjTableta_Grafica> lista_impresoras;
     
+    public Inventario() {
+        this.lista_computadores = new LinkedList<>();
+        this.lista_impresoras = new LinkedList<>();
+    }
     public LinkedList<ObjComputador_Portatil> getLista_computadores() {
         return lista_computadores;
     }

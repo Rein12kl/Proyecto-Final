@@ -8,7 +8,7 @@ public class Metodos {
         boolean continuar = true;
         while (continuar) {
             System.out.println("");
-            System.out.println("¿Qué tipo de estudiante desea ingresar?");
+            System.out.println("¿Qué tipo de estudiante desea ingresar?\n");
             System.out.println("1. Estudiante de Diseño");
             System.out.println("2. Estudiante de Ingeniería");
             System.out.println(""); 
@@ -34,7 +34,7 @@ public class Metodos {
 
             Estudiantes nuevoEstudiante = new Estudiantes();
             if (tipo == 1) {
-                ObjEstudiante_Diseño estudianteDiseno = new ObjEstudiante_Diseño();
+                ObjEstudiante_Diseno estudianteDiseno = new ObjEstudiante_Diseno();
                 String cedula;
                 while (true) {
                     System.out.print("Ingrese cédula: ");
@@ -114,7 +114,7 @@ public class Metodos {
                         System.out.println("El serial no debe contener caracteres especiales.");
                     }
                 }
-                LinkedList<ObjEstudiante_Diseño> listaDiseno = nuevoEstudiante.getEstudiantesDiseno();
+                LinkedList<ObjEstudiante_Diseno> listaDiseno = nuevoEstudiante.getEstudiantesDiseno();
                 if (listaDiseno == null) {
                     listaDiseno = new LinkedList<>();
                 }
@@ -178,7 +178,7 @@ public class Metodos {
 
                 System.out.print("Ingrese promedio acumulado: ");
                 while (!sc.hasNextFloat()) {
-                    System.out.print("Ingrese una cantidad de asignaturas válida.");
+                    System.out.print("Ingrese un promedio válido.");
                     sc.next();
                 }
                 float PromedioAcumulado = sc.nextFloat();
@@ -230,7 +230,7 @@ public class Metodos {
         boolean continuar = true;
         while (continuar) {
             Inventario inventario = new Inventario();
-            System.out.println("¿Qué tipo de equipo desea ingresar?");
+            System.out.println("¿Qué tipo de equipo desea ingresar?\n");
             System.out.println("1. Computador Portátil");
             System.out.println("2. Tableta Gráfica");
             int tipo = 0;
@@ -281,7 +281,7 @@ public class Metodos {
 
                 String sistemaOperativo = "";
                 while (true) {
-                    System.out.print("Seleccione un sistema operativo");
+                    System.out.print("Seleccione un sistema operativo\n");
                     System.out.println("1. Windows 7 (W7)");
                     System.out.println("2. Windows 10 (W10)");
                     System.out.println("3. Windows 11 (W11)");
@@ -312,7 +312,7 @@ public class Metodos {
 
                 String procesador = "";
                 while (true) {
-                    System.out.println("Seleccione procesador:");
+                    System.out.println("Seleccione procesador: \n");
                     System.out.println("1. AMD Ryzen");
                     System.out.println("2. Intel Core i5");
                     System.out.print("Opción: ");
@@ -372,7 +372,7 @@ public class Metodos {
                 float Precio = sc.nextFloat();
                 tableta.setPrecio(Precio);
 
-                System.out.print("Seleccione un almacenamiento");
+                System.out.print("Seleccione un almacenamiento\n");
                 int almacenamiento = 0;
                 while (true) {
                     System.out.println("1. 256 GB");
@@ -450,7 +450,7 @@ public class Metodos {
             ImprimirInventarioDisponible(inventarios);
             ImprimirEstudiantesDisponibles(estudiantes);
 
-            System.out.println("¿Qué tipo de estudiante desea registrar para el préstamo?");
+            System.out.println("¿Qué tipo de estudiante desea registrar para el préstamo?\n");
             System.out.println("1. Estudiante de Diseño");
             System.out.println("2. Estudiante de Ingeniería");
             int tipoEstudiante = 0;
@@ -470,7 +470,7 @@ public class Metodos {
                 }
             }
 
-            System.out.println("¿Qué tipo de equipo desea prestar?");
+            System.out.println("¿Qué tipo de equipo desea prestar?\n");
             System.out.println("1. Computador Portátil");
             System.out.println("2. Tableta Gráfica");
             int tipoEquipo = 0;
@@ -506,7 +506,7 @@ public class Metodos {
             // Buscar el estudiante por cédula
             for (Estudiantes estudiante : estudiantes) {
                 if (tipoEstudiante == 1) {
-                    for (ObjEstudiante_Diseño diseno : estudiante.getEstudiantesDiseno()) {
+                    for (ObjEstudiante_Diseno diseno : estudiante.getEstudiantesDiseno()) {
                         if (diseno.getCedula().equals(cedula)) {
                             diseno.setEnPrestamo(true);
                             estudianteObj = estudiante;
@@ -527,26 +527,34 @@ public class Metodos {
             }
 
             // Buscar el inventario por serial
+            boolean serialValido = false;
             for (Inventario inventario : inventarios) {
                 if (tipoEquipo == 1) {
                     for (ObjComputador_Portatil computador : inventario.getLista_computadores()) {
                         if (computador.getSerial().equals(serial)) {
                             computador.setPrestado(true);
                             inventarioObj = inventario;
+                            serialValido  = true;
                             break;
                         }
                     }
                 } else {
                     for (ObjTableta_Grafica tableta : inventario.getLista_impresoras()) {
                         if (tableta.getSerial().equals(serial)) {
-                            
+                            tableta.setPrestado(true);
                             inventarioObj = inventario;
+                            serialValido = true;
+                        
                             break;
                         }
                     }
                 }
-                if (inventarioObj != null)
+                if (serialValido)
                     break;
+            }
+            if (!serialValido) {
+                System.out.println("Serial no válido. Por favor, intente nuevamente.");
+                continue;
             }
 
             if (estudianteObj != null && inventarioObj != null) {
@@ -583,7 +591,7 @@ public class Metodos {
         System.out.println("Préstamos actuales:");
         MostrarPrestamos(prestamos);
         
-        System.out.println("\n¿Cómo desea buscar el préstamo a modificar?");
+        System.out.println("\n¿Cómo desea buscar el préstamo a modificar?\n");
         System.out.println("1. Por cédula del estudiante");
         System.out.println("2. Por serial del equipo");
         
@@ -622,7 +630,7 @@ public class Metodos {
     
         System.out.println("\nDatos actuales del préstamo:");
 
-        System.out.println("\n¿Qué desea modificar?");
+        System.out.println("\n¿Qué desea modificar?\n");
         System.out.println("1. Fecha de préstamo");
         System.out.println("2. Fecha de devolución");
         System.out.println("3. Cancelar modificación");
@@ -684,7 +692,7 @@ public class Metodos {
         System.out.println("Préstamos actuales:");
         MostrarPrestamos(prestamos);
 
-        System.out.println("\n¿Cómo desea buscar el préstamo a devolver?");
+        System.out.println("\n¿Cómo desea buscar el préstamo a devolver?\n");
         System.out.println("1. Por cédula del estudiante");
         System.out.println("2. Por serial del equipo");
 
@@ -730,7 +738,7 @@ public class Metodos {
             if (opcionBusqueda == 1) {
                 Estudiantes estudiante = prestamo.getEstudiante();
                 if (estudiante != null) {
-                    for (ObjEstudiante_Diseño diseno : estudiante.getEstudiantesDiseno()) {
+                    for (ObjEstudiante_Diseno diseno : estudiante.getEstudiantesDiseno()) {
                         if (diseno.getCedula().equals(busqueda)) {
                             prestamoEncontrado = prestamo;
                             break;
@@ -851,9 +859,9 @@ public class Metodos {
         for (Estudiantes estudiante : estudiantes) {
             System.out.println("--- ESTUDIANTES ---");
             System.out.println("Estudiantes de Diseño:");
-            LinkedList<ObjEstudiante_Diseño> estudiantesDiseno = estudiante.getEstudiantesDiseno();
+            LinkedList<ObjEstudiante_Diseno> estudiantesDiseno = estudiante.getEstudiantesDiseno();
             if (estudiantesDiseno != null) {
-                for (ObjEstudiante_Diseño diseno : estudiantesDiseno) {
+                for (ObjEstudiante_Diseno diseno : estudiantesDiseno) {
                     System.out.println("Cédula: " + diseno.getCedula());
                     System.out.println("Nombre: " + diseno.getNombre());
                     System.out.println("Apellido: " + diseno.getApellido());
@@ -893,9 +901,9 @@ public class Metodos {
         for (Estudiantes estudiante : estudiantes) {
             System.out.println("--- ESTUDIANTES ---");
             System.out.println("Estudiantes de Diseño:");
-            LinkedList<ObjEstudiante_Diseño> estudiantesDiseno = estudiante.getEstudiantesDiseno();
+            LinkedList<ObjEstudiante_Diseno> estudiantesDiseno = estudiante.getEstudiantesDiseno();
             if (estudiantesDiseno != null) {
-                for (ObjEstudiante_Diseño diseno : estudiantesDiseno) {
+                for (ObjEstudiante_Diseno diseno : estudiantesDiseno) {
                     if (!diseno.isEnPrestamo()) {
                     System.out.println("Cédula: " + diseno.getCedula());
                     System.out.println("Nombre: " + diseno.getNombre());
