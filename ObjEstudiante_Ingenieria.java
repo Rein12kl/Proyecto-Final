@@ -1,4 +1,3 @@
-
 public class ObjEstudiante_Ingenieria {
 
     private String Cedula;
@@ -8,7 +7,6 @@ public class ObjEstudiante_Ingenieria {
     private int NumeroSemestre;
     private float PromedioAcumulado;
     private String Serial;
-    private boolean EnPrestamo;
     public ObjEstudiante_Ingenieria() {
     }
     public ObjEstudiante_Ingenieria(String cedula, String nombre, String apellido, String telefono, int numeroSemestre,
@@ -63,10 +61,7 @@ public class ObjEstudiante_Ingenieria {
     public void setSerial(String serial) {
         Serial = serial;
     }
-    public boolean isEnPrestamo() {
-        return EnPrestamo;
-    }
-    public void setEnPrestamo(boolean enPrestamo) {
-        EnPrestamo = enPrestamo;
-    } 
+
+    
+
 }
