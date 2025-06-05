@@ -4,942 +4,145 @@ import java.util.Scanner;
 public class Metodos {
     Scanner sc = new Scanner(System.in);
 
-    public LinkedList<Estudiantes> IngresarEstudiante(LinkedList<Estudiantes> estudiantes) {
-        boolean continuar = true;
-        while (continuar) {
-            System.out.println("");
-            System.out.println("¿Qué tipo de estudiante desea ingresar?\n");
-            System.out.println("1. Estudiante de Diseño");
-            System.out.println("2. Estudiante de Ingeniería");
-            System.out.println(""); 
-            int tipo = 0;
-            while (true) {
-                System.out.print("Seleccione una opción: ");
-                System.out.println("");
-                if (sc.hasNextInt()) {
-                    tipo = sc.nextInt();
-                    sc.nextLine();
-                    if (tipo == 1 || tipo == 2) {
-                        break;
-                    } else {
-                        System.out.println("Opción no válida. Debe ser 1 o 2.");
-                        System.out.println("");
-                    }
-                } else {
-                    System.out.println("Entrada inválida. Debe ingresar un número entero.");
-                    System.out.println("");
-                    sc.next();
-                }
-            }
+    public void Menu_ingenieria(LinkedList<ObjEstudiante_Ingenieria> L1, LinkedList<ObjComputador_Portatil> L2) {
+        boolean bandera = true;
+        int opt_Inge = 0;
 
-            Estudiantes nuevoEstudiante = new Estudiantes();
-            if (tipo == 1) {
-                ObjEstudiante_Diseno estudianteDiseno = new ObjEstudiante_Diseno();
-                String cedula;
-                while (true) {
-                    System.out.print("Ingrese cédula: ");
-                    cedula = sc.next();
-                    if (ValidarCaracteresEspeciales(cedula)) {
-                        estudianteDiseno.setCedula(cedula);
-                        break;
-                    } else {
-                        System.out.println("La cédula no debe contener caracteres especiales.");
-                    }
-                }
-                String nombre;
-                while (true) {
-                    System.out.print("Ingrese nombre: ");
-                    nombre = sc.next();
-                    if (ValidarCaracteresEspeciales(nombre) && ValidarNumeros(nombre)) {
-                        estudianteDiseno.setNombre(nombre);
-                        break;
-                    } else {
-                        System.out.println("El nombre no debe contener caracteres especiales.");
-                    }
-                }
-                String apellido;
-                while (true) {
-                    System.out.print("Ingrese apellido: ");
-                    apellido = sc.next();
-                    if (ValidarCaracteresEspeciales(apellido) && ValidarNumeros(apellido)) {
-                        estudianteDiseno.setApellido(apellido);
-                        break;
-                    } else {
-                        System.out.println("El apellido no debe contener caracteres especiales.");
-                    }
-                }
-                String telefono;
-                while (true) {
-                    System.out.print("Ingrese teléfono: ");
-                    telefono = sc.next();
-                    if (ValidarCaracteresEspeciales(telefono)) {
-                        estudianteDiseno.setTelefono(telefono);
-                        break;
-                    } else {
-                        System.out.println("El teléfono no debe contener caracteres especiales.");
-                    }
-                }
+        while (bandera) {
+            System.out.println("Opciones de ingenieria");
+            System.out.println("Registrar prestamo de un equipo");
+            System.out.println("Devolucion del equipo");
+            System.out.println("Buscar equipo");
+            System.out.println("Volver a menu principal");
+            System.out.println();
 
-                System.out.print("Ingrese modalidad de estudio (virtual/presencial): ");
-                String ModalidadEstudio = "";
-                while (true) {
-                    ModalidadEstudio = sc.nextLine();
-                    if (ModalidadEstudio.equalsIgnoreCase("virtual") || ModalidadEstudio.equalsIgnoreCase("presencial"))
-                        break;
-                    System.out.println("Ingrese una opción válida (virtual/presencial):");
-                }
-                estudianteDiseno.setModalidadEstudio(ModalidadEstudio);
-
-                System.out.print("Ingrese cantidad de asignaturas: ");
-                while (!sc.hasNextInt()) {
-                    System.out.print("Ingrese una cantidad de asignaturas válida.");
-                    sc.next();
-                }
-                int CantidadAsignatura = sc.nextInt();
-                estudianteDiseno.setCantidadAsignaturas(CantidadAsignatura);
-
-                int Serial;
-                while (true) {
-                    System.out.print("Ingrese serial: ");
-                    String serialInput = sc.next();
-                    if (ValidarCaracteresEspeciales(serialInput)) {
-                        try {
-                            Serial = Integer.parseInt(serialInput);
-                            estudianteDiseno.setSerial(Serial);
-                            break;
-                        } catch (NumberFormatException e) {
-                            System.out.println("El serial debe ser un número entero válido.");
-                        }
-                    } else {
-                        System.out.println("El serial no debe contener caracteres especiales.");
-                    }
-                }
-                LinkedList<ObjEstudiante_Diseno> listaDiseno = nuevoEstudiante.getEstudiantesDiseno();
-                if (listaDiseno == null) {
-                    listaDiseno = new LinkedList<>();
-                }
-                listaDiseno.add(estudianteDiseno);
-                nuevoEstudiante.setEstudiantesDiseno(listaDiseno);
-                System.out.println("Estudiante de Diseño ingresado exitosamente.");
-            } else if (tipo == 2) {
-                ObjEstudiante_Ingenieria estudianteIngenieria = new ObjEstudiante_Ingenieria();
-                String cedula;
-                while (true) {
-                    System.out.print("Ingrese cédula: ");
-                    cedula = sc.next();
-                    if (ValidarCaracteresEspeciales(cedula)) {
-                        estudianteIngenieria.setCedula(cedula);
-                        break;
-                    } else {
-                        System.out.println("La cédula no debe contener caracteres especiales.");
-                    }
-                }
-                String nombre;
-                while (true) {
-                    System.out.print("Ingrese nombre: ");
-                    nombre = sc.next();
-                    if (ValidarCaracteresEspeciales(nombre) && ValidarNumeros(nombre)) {
-                        estudianteIngenieria.setNombre(nombre);
-                        break;
-                    } else {
-                        System.out.println("El nombre no debe contener caracteres especiales.");
-                    }
-                }
-                String apellido;
-                while (true) {
-                    System.out.print("Ingrese apellido: ");
-                    apellido = sc.next();
-                    if (ValidarCaracteresEspeciales(apellido) && ValidarNumeros(apellido)) {
-                        estudianteIngenieria.setApellido(apellido);
-                        break;
-                    } else {
-                        System.out.println("El apellido no debe contener caracteres especiales.");
-                    }
-                }
-                String telefono;
-                while (true) {
-                    System.out.print("Ingrese teléfono: ");
-                    telefono = sc.next();
-                    if (ValidarCaracteresEspeciales(telefono)) {
-                        estudianteIngenieria.setTelefono(telefono);
-                        break;
-                    } else {
-                        System.out.println("El teléfono no debe contener caracteres especiales.");
-                    }
-                }
-
-                System.out.print("Ingrese número de semestre: ");
-                while (!sc.hasNextInt()) {
-                    System.out.print("Ingrese un semestre válido.");
-                    sc.next();
-                }
-                int NumeroSemestre = sc.nextInt();
-                estudianteIngenieria.setNumeroSemestre(NumeroSemestre);
-
-                System.out.print("Ingrese promedio acumulado: ");
-                while (!sc.hasNextFloat()) {
-                    System.out.print("Ingrese un promedio válido.");
-                    sc.next();
-                }
-                float PromedioAcumulado = sc.nextFloat();
-                estudianteIngenieria.setPromedioAcumulado(PromedioAcumulado);
-
-                String Serial;
-                while (true) {
-                    System.out.print("Ingrese serial: ");
-                    Serial = sc.next();
-                    if (ValidarCaracteresEspeciales(Serial)) {
-                        estudianteIngenieria.setSerial(Serial);
-                        break;
-                    } else {
-                        System.out.println("El serial no debe contener caracteres especiales.");
-                    }
-                }
-
-                LinkedList<ObjEstudiante_Ingenieria> listaIngenieria = nuevoEstudiante.getEstudiantesIngenieria();
-                if (listaIngenieria == null) {
-                    listaIngenieria = new LinkedList<>();
-                }
-                listaIngenieria.add(estudianteIngenieria);
-                nuevoEstudiante.setEstudiantesIngenieria(listaIngenieria);
-                System.out.println("Estudiante de Ingeniería ingresado exitosamente.");
-            } else {
-                System.out.println("Opción no válida.");
-            }
-
-            System.out.print("¿Desea ingresar otro estudiante? (s/n): ");
-            String respuesta;
-            while (true) {
-                respuesta = sc.nextLine();
-                if (respuesta.equalsIgnoreCase("s") || respuesta.equalsIgnoreCase("n")) {
-                    break;
-                } else {
-                    System.out.println("Entrada inválida. Debe ingresar 's' o 'n'.");
-                }
-            }
-            estudiantes.add(nuevoEstudiante);
-            if (!respuesta.equalsIgnoreCase("s")) {
-                continuar = false;
-            }
-        }
-        return estudiantes;
-    }
-
-    public LinkedList<Inventario> IngresarInventario(LinkedList<Inventario> inventarios) {
-      
-        boolean continuar = true;
-        while (continuar) {
-            Inventario inventario = new Inventario();
-            System.out.println("¿Qué tipo de equipo desea ingresar?\n");
-            System.out.println("1. Computador Portátil");
-            System.out.println("2. Tableta Gráfica");
-            int tipo = 0;
-            while (true) {
-                System.out.print("Seleccione una opción: ");
-                if (sc.hasNextInt()) {
-                    tipo = sc.nextInt();
-                    if (tipo == 1 || tipo == 2) {
-                        break;
-                    } else {
-                        System.out.println("Opción no válida. Debe ser 1 o 2.");
-                    }
-                } else {
-                    System.out.println("Entrada inválida. Debe ingresar un número entero.");
-                    sc.next();
-                }
-            }
-
-            if (tipo == 1) {
-                ObjComputador_Portatil computador = new ObjComputador_Portatil();
-                System.out.print("Ingrese serial: ");
-                while (!sc.hasNextInt()) {
-                    System.out.print("Ingrese un serial válido.");
-                    sc.next();
-                }
-                String Serial = sc.next();
-                computador.setSerial(Serial);
-
-                System.out.print("Ingrese marca: ");
-                String Marca = sc.next();
-                computador.setMarca(Marca);
-
-                System.out.print("Ingrese tamaño (pulgadas): ");
-                while (!sc.hasNextFloat()) {
-                    System.out.print("Ingrese un tamaño válido.");
-                    sc.next();
-                }
-                float Tamano = sc.nextFloat();
-                computador.setTamano(Tamano);
-
-                System.out.print("Ingrese precio: ");
-                while (!sc.hasNextInt()) {
-                    System.out.print("Ingrese un precio válido.");
-                    sc.next();
-                }
-                float Precio = sc.nextFloat();
-                computador.setPrecio(Precio);
-
-                String sistemaOperativo = "";
-                while (true) {
-                    System.out.print("Seleccione un sistema operativo\n");
-                    System.out.println("1. Windows 7 (W7)");
-                    System.out.println("2. Windows 10 (W10)");
-                    System.out.println("3. Windows 11 (W11)");
-                    if (sc.hasNextInt()) {
-                        int opcion = sc.nextInt();
-                        sc.nextLine();
-                        switch (opcion) {
-                            case 1:
-                                sistemaOperativo = "W7";
-                                break;
-                            case 2:
-                                sistemaOperativo = "W10";
-                                break;
-                            case 3:
-                                sistemaOperativo = "W11";
-                                break;
-                            default:
-                                System.out.println("Opción no válida. Intente nuevamente.");
-                                continue;
-                        }
-                        break;
-                    } else {
-                        System.out.println("Entrada inválida. Ingrese un número.");
-                        sc.next();
-                    }
-                }
-                computador.setSistemaOperativo(sistemaOperativo);
-
-                String procesador = "";
-                while (true) {
-                    System.out.println("Seleccione procesador: \n");
-                    System.out.println("1. AMD Ryzen");
-                    System.out.println("2. Intel Core i5");
-                    System.out.print("Opción: ");
-                    if (sc.hasNextInt()) {
-                        int opcion = sc.nextInt();
-                        switch (opcion) {
-                            case 1:
-                                procesador = "AMD Ryzen";
-                                break;
-                            case 2:
-                                procesador = "Intel Core i5";
-                                break;
-                            default:
-                                System.out.println("Opción no válida. Intente nuevamente.");
-                                continue;
-                        }
-                        break;
-                    } else {
-                        System.out.println("Entrada inválida. Ingrese un número.");
-                        sc.next();
-                    }
-                }
-                computador.setProcesador(procesador);
-
-                LinkedList<ObjComputador_Portatil> listaComputadores = inventario.getLista_computadores();
-                if (listaComputadores == null) {
-                    listaComputadores = new LinkedList<>();
-                }
-                listaComputadores.add(computador);
-                inventario.setLista_computadores(listaComputadores);
-                System.out.println("Computador Portátil ingresado exitosamente.");
-                inventarios.add(inventario);
-            } else if (tipo == 2) {
-                ObjTableta_Grafica tableta = new ObjTableta_Grafica();
-                System.out.print("Ingrese serial: ");
-                String Serial = sc.next();
-                tableta.setSerial(Serial);
-
-                System.out.print("Ingrese marca: ");
-              
-                String Marca = sc.next();
-                tableta.setMarca(Marca);
-
-                System.out.print("Ingrese tamaño (pulgadas): ");
-                while (!sc.hasNextFloat()) {
-                    System.out.print("Ingrese un tamaño válido.");
-                    sc.next();
-                }
-                float Tamano = sc.nextFloat();
-                tableta.setTamano(Tamano);
-
-                System.out.print("Ingrese precio: ");
-                while (!sc.hasNextFloat()) {
-                    System.out.print("Ingrese un precio válido.");
-                    sc.next();
-                }
-                float Precio = sc.nextFloat();
-                tableta.setPrecio(Precio);
-
-                System.out.print("Seleccione un almacenamiento\n");
-                int almacenamiento = 0;
-                while (true) {
-                    System.out.println("1. 256 GB");
-                    System.out.println("2. 512 GB");
-                    System.out.println("3. 1024 GB");
-
-                    if (sc.hasNextInt()) {
-                        int opcion = sc.nextInt();
-                        switch (opcion) {
-                            case 1:
-                                almacenamiento = 256;
-                                break;
-                            case 2:
-                                almacenamiento = 512;
-                                break;
-                            case 3:
-                                almacenamiento = 1024;
-                                break;
-                            default:
-                                System.out.println("Opción no válida. Intente de nuevo.");
-                                continue;
-                        }
-                        break;
-                    } else {
-                        System.out.println("Entrada inválida. Debe ingresar una opción válida.");
-                        sc.next();
-                    }
-                    tableta.setAlmacenamiento(almacenamiento);
-
-                }
-                
-                System.out.print("Ingrese peso (kg): ");
-                while (!sc.hasNextFloat()) {
-                    System.out.print("Ingrese un peso válido.");
-                    sc.next();
-                }
-                float Peso = sc.nextFloat();
-                tableta.setPeso(Peso);
-
-                LinkedList<ObjTableta_Grafica> listaTabletas = inventario.getLista_impresoras();
-                if (listaTabletas == null) {
-                    listaTabletas = new LinkedList<>();
-                }
-                listaTabletas.add(tableta);
-                inventario.setLista_impresoras(listaTabletas);
-                System.out.println("Tableta Gráfica ingresada exitosamente.");
-                inventarios.add(inventario);
-            } else if (tipo == 2) {
-                System.out.println("Opción no válida.");
-            }
-            
-
-            System.out.print("¿Desea ingresar otro equipo? (s/n): ");
-            String respuesta;
-            while (true) {
-                respuesta = sc.nextLine();
-                if (respuesta.equalsIgnoreCase("s") || respuesta.equalsIgnoreCase("n")) {
-                    break;
-                } else {
-                    System.out.println("Entrada inválida. Debe ingresar 's' o 'n'.");
-                }
-            }
-            if (!respuesta.equalsIgnoreCase("s")) {
-                continuar = false;
-            }
-        }
-        return inventarios;
-    }
-
-    public LinkedList<Prestamo> RegistrarPrestamoEquipo(LinkedList<Inventario> inventarios, LinkedList<Estudiantes> estudiantes) {
-        boolean continuar = true;
-        LinkedList<Prestamo> prestamos = new LinkedList<>();
-        while (continuar) {
-            // Imprimir inventario y estudiantes disponibles
-            ImprimirInventarioDisponible(inventarios);
-            ImprimirEstudiantesDisponibles(estudiantes);
-
-            System.out.println("¿Qué tipo de estudiante desea registrar para el préstamo?\n");
-            System.out.println("1. Estudiante de Diseño");
-            System.out.println("2. Estudiante de Ingeniería");
-            int tipoEstudiante = 0;
-            while (true) {
-                System.out.print("Seleccione una opción: ");
-                if (sc.hasNextInt()) {
-                    tipoEstudiante = sc.nextInt();
-                    sc.next();
-                    if (tipoEstudiante == 1 || tipoEstudiante == 2) {
-                        break;
-                    } else {
-                        System.out.println("Opción no válida. Debe ser 1 o 2.");
-                    }
-                } else {
-                    System.out.println("Entrada inválida. Debe ingresar un número entero.");
-                    sc.nextLine();
-                }
-            }
-
-            System.out.println("¿Qué tipo de equipo desea prestar?\n");
-            System.out.println("1. Computador Portátil");
-            System.out.println("2. Tableta Gráfica");
-            int tipoEquipo = 0;
-            while (true) {
-                System.out.print("Seleccione una opción: ");
-                if (sc.hasNextInt()) {
-                    tipoEquipo = sc.nextInt();
-                    sc.nextLine(); // Limpiar buffer
-                    if (tipoEquipo == 1 || tipoEquipo == 2) {
-                        break;
-                    } else {
-                        System.out.println("Opción no válida. Debe ser 1 o 2.");
-                    }
-                } else {
-                    System.out.println("Entrada inválida. Debe ingresar un número entero.");
-                    sc.next(); // Limpiar entrada inválida
-                }
-            }
-
-            // Preguntar por la cédula del estudiante
-            System.out.print("Ingrese la cédula del estudiante: ");
-            String cedula = sc.next();
-
-            // Preguntar por el serial del inventario
-            System.out.print("Ingrese el serial del inventario: ");
-            String serial = sc.next();
-
-            // Crear objeto Prestamo
-            Prestamo prestamo = new Prestamo();
-            Estudiantes estudianteObj = null;
-            Inventario inventarioObj = null;
-
-            // Buscar el estudiante por cédula
-            for (Estudiantes estudiante : estudiantes) {
-                if (tipoEstudiante == 1) {
-                    for (ObjEstudiante_Diseno diseno : estudiante.getEstudiantesDiseno()) {
-                        if (diseno.getCedula().equals(cedula)) {
-                            diseno.setEnPrestamo(true);
-                            estudianteObj = estudiante;
-                            break;
-                        }
-                    }
-                } else {
-                    for (ObjEstudiante_Ingenieria ingenieria : estudiante.getEstudiantesIngenieria()) {
-                        if (ingenieria.getCedula().equals(cedula)) {
-                            ingenieria.setEnPrestamo(true);
-                            estudianteObj = estudiante;
-                            break;
-                        }
-                    }
-                }
-                if (estudianteObj != null)
-                    break;
-            }
-
-            // Buscar el inventario por serial
-            boolean serialValido = false;
-            for (Inventario inventario : inventarios) {
-                if (tipoEquipo == 1) {
-                    for (ObjComputador_Portatil computador : inventario.getLista_computadores()) {
-                        if (computador.getSerial().equals(serial)) {
-                            computador.setPrestado(true);
-                            inventarioObj = inventario;
-                            serialValido  = true;
-                            break;
-                        }
-                    }
-                } else {
-                    for (ObjTableta_Grafica tableta : inventario.getLista_impresoras()) {
-                        if (tableta.getSerial().equals(serial)) {
-                            tableta.setPrestado(true);
-                            inventarioObj = inventario;
-                            serialValido = true;
-                        
-                            break;
-                        }
-                    }
-                }
-                if (serialValido)
-                    break;
-            }
-            if (!serialValido) {
-                System.out.println("Serial no válido. Por favor, intente nuevamente.");
-                continue;
-            }
-
-            if (estudianteObj != null && inventarioObj != null) {
-                prestamo.setEstudiante(estudianteObj);
-                prestamo.setInventario(inventarioObj);
-                // Marcar estudiante e inventario como en préstamo/prestado
-                System.out.println("Préstamo registrado exitosamente.");
-            } else {
-                System.out.println("No se encontró el estudiante o el inventario especificado.");
-            }
-
-            System.out.print("¿Desea realizar otro préstamo? (s/n): ");
-            String respuesta;
-            while (true) {
-                respuesta = sc.nextLine();
-                if (respuesta.equalsIgnoreCase("s") || respuesta.equalsIgnoreCase("n")) {
-                    break;
-                } else {
-                    System.out.println("Entrada inválida. Debe ingresar 's' o 'n'.");
-                }
-            }
-            if (!respuesta.equalsIgnoreCase("s")) {
-                continuar = false;
-            }
-            prestamos.add(prestamo);
-        }
-        return prestamos;
-    }
-
-    public LinkedList<Prestamo> ModificarPrestamoEquipo(LinkedList<Prestamo> prestamos) {
-        System.out.println("\n=== MODIFICAR PRÉSTAMO DE EQUIPO ===");
-        
-        // Mostrar préstamos existentes
-        System.out.println("Préstamos actuales:");
-        MostrarPrestamos(prestamos);
-        
-        System.out.println("\n¿Cómo desea buscar el préstamo a modificar?\n");
-        System.out.println("1. Por cédula del estudiante");
-        System.out.println("2. Por serial del equipo");
-        
-        int opcionBusqueda = 0;
-        while (true) {
-            System.out.print("Seleccione una opción: ");
-            if (sc.hasNextInt()) {
-                opcionBusqueda = sc.nextInt();
-                sc.nextLine(); // Limpiar buffer
-                if (opcionBusqueda == 1 || opcionBusqueda == 2) {
-                    break;
-                } else {
-                    System.out.println("Opción no válida. Debe ser 1 o 2.");
-                }
-            } else {
-                System.out.println("Entrada inválida. Debe ingresar un número entero.");
+            while (!sc.hasNextInt()) {
+                System.out.println("Ingrese valores numericos del 1 al 5");
                 sc.next();
             }
-        }
+            opt_Inge = sc.nextInt();
 
-        String busqueda = "";
-        if (opcionBusqueda == 1) {
-            System.out.print("Ingrese la cédula del estudiante: ");
-            busqueda = sc.nextLine();
-        } else {
-            System.out.print("Ingrese el serial del equipo: ");
-            busqueda = sc.nextLine();
-        }
-
-        Prestamo prestamoEncontrado = BuscarEquipo(prestamos, opcionBusqueda, busqueda);
-        
-        if (prestamoEncontrado == null) {
-            System.out.println("No se encontró el préstamo con los datos proporcionados.");
-            return prestamos;
-        }
-    
-        System.out.println("\nDatos actuales del préstamo:");
-
-        System.out.println("\n¿Qué desea modificar?\n");
-        System.out.println("1. Fecha de préstamo");
-        System.out.println("2. Fecha de devolución");
-        System.out.println("3. Cancelar modificación");
-
-        int opcionModificacion = 0;
-        while (true) {
-            System.out.print("Seleccione una opción: ");
-            if (sc.hasNextInt()) {
-                opcionModificacion = sc.nextInt();
-                sc.nextLine(); // Limpiar buffer
-                if (opcionModificacion >= 1 && opcionModificacion <= 4) {
+            switch (opt_Inge) {
+                case 1:
+                    IngresarEstudiante(L1);
                     break;
-                } else {
-                    System.out.println("Opción no válida. Debe ser un número entre 1 y 4.");
-                }
-            } else {
-                System.out.println("Entrada inválida. Debe ingresar un número entero.");
+                case 2:
+                    System.out.println("Maintenance\n");
+                    break;
+                case 3:
+                    System.out.println("Maintenance\n");
+                    break;
+                case 4:
+                    System.out.println("Maintenance\n");
+                    break;
+                case 5:
+                    bandera = false;
+                    break;
+                default:
+                    System.out.println("opcion invalida\n");
+                    break;
+            }
+
+        }
+
+    }
+
+    public void Menu_Diseño(LinkedList<ObjEstudiante_Diseño> L1, LinkedList<ObjTableta_Grafica> L2) {
+        boolean bandera = true;
+        while (bandera) {
+            System.out.println("Opciones de ingenieria");
+            System.out.println("Registrar prestamo de un equipo");
+            System.out.println("Devolucion del equipo");
+            System.out.println("Buscar equipo");
+            System.out.println("Volver a menu principal");
+            System.out.println();
+
+            while (!sc.hasNextInt()) {
+                System.out.println("Ingrese valores numericos del 1 al 5");
                 sc.next();
             }
-        }
+            int opt_Dis = sc.nextInt();
 
-        switch (opcionModificacion) {
-            case 1:
-                System.out.print("Ingrese la nueva fecha de préstamo (dd/mm/yyyy): ");
-                String nuevaFechaPrestamo = sc.nextLine();
-                prestamoEncontrado.setFechaPrestamo(nuevaFechaPrestamo);
-                System.out.println("Fecha de préstamo actualizada exitosamente.");
-                break;
-            case 2:
-                System.out.print("Ingrese la nueva fecha de devolución (dd/mm/yyyy): ");
-                String nuevaFechaDevolucion = sc.nextLine();
-                prestamoEncontrado.setFechaDevolucion(nuevaFechaDevolucion);
-                System.out.println("Fecha de devolución actualizada exitosamente.");
-                break;
-          
-            case 3:
-                System.out.println("Modificación cancelada.");
-                break;
-        }
-        prestamos.add(prestamoEncontrado);
-        return prestamos;
-    }
-
-    public void MostrarPrestamos(LinkedList<Prestamo> prestamos) {
-        System.out.println("Préstamos actuales:");
-        if (prestamos == null || prestamos.isEmpty()) {
-            System.out.println("No hay préstamos registrados.");
-            return;
-        }
-        for (Prestamo prestamo : prestamos) {
-            System.out.println("Estudiante: " + prestamo.getEstudiante());
-            System.out.println("Equipo: " + prestamo.getInventario());
-            System.out.println("-------------------");
-        }
-    }
-
-    public LinkedList<Prestamo> DevolucionEquipo(LinkedList<Prestamo> prestamos) {
-        System.out.println("\n=== DEVOLUCIÓN DE EQUIPO ===");
-        System.out.println("Préstamos actuales:");
-        MostrarPrestamos(prestamos);
-
-        System.out.println("\n¿Cómo desea buscar el préstamo a devolver?\n");
-        System.out.println("1. Por cédula del estudiante");
-        System.out.println("2. Por serial del equipo");
-
-        int opcionBusqueda = 0;
-        while (true) {
-            System.out.print("Seleccione una opción: ");
-            if (sc.hasNextInt()) {
-                opcionBusqueda = sc.nextInt();
-                sc.nextLine(); // Limpiar buffer
-                if (opcionBusqueda == 1 || opcionBusqueda == 2) {
+            switch (opt_Dis) {
+                case 1:
+                    System.out.println("Maintenance\n");
                     break;
-                } else {
-                    System.out.println("Opción no válida. Debe ser 1 o 2.");
-                }
-            } else {
-                System.out.println("Entrada inválida. Debe ingresar un número entero.");
-                sc.next();
+                case 2:
+                    System.out.println("Maintenance\n");
+                    break;
+                case 3:
+                    System.out.println("Maintenance\n");
+                    break;
+                case 4:
+                    System.out.println("Maintenance\n");
+                    break;
+                case 5:
+                    bandera = false;
+                    break;
+                default:
+                    System.out.println("opcion invalida\n");
+                    break;
             }
-        }
-        String busqueda = "";
-        if (opcionBusqueda == 1) {
-            System.out.print("Ingrese la cédula del estudiante: ");
-            busqueda = sc.nextLine();
-        } else {
-            System.out.print("Ingrese el serial del equipo: ");
-            busqueda = sc.nextLine();
+
         }
 
-        Prestamo prestamoEncontrado = BuscarEquipo(prestamos, opcionBusqueda, busqueda);
-       
-
-        if (prestamoEncontrado == null) {
-            System.out.println("No se encontró el préstamo con los datos proporcionados.");
-        } else {
-            System.out.println("Se registró devolución de equipo a estudiante.");
-        }
-        return prestamos;
     }
 
-    public Prestamo BuscarEquipo(LinkedList<Prestamo> prestamos, int opcionBusqueda, String busqueda) {
-        Prestamo prestamoEncontrado = null;
-        for (Prestamo prestamo : prestamos) {
-            if (opcionBusqueda == 1) {
-                Estudiantes estudiante = prestamo.getEstudiante();
-                if (estudiante != null) {
-                    for (ObjEstudiante_Diseno diseno : estudiante.getEstudiantesDiseno()) {
-                        if (diseno.getCedula().equals(busqueda)) {
-                            prestamoEncontrado = prestamo;
-                            break;
-                        }
-                    }
-                    for (ObjEstudiante_Ingenieria ing : estudiante.getEstudiantesIngenieria()) {
-                        if (ing.getCedula().equals(busqueda)) {
-                            prestamoEncontrado = prestamo;
-                            break;
-                        }
-                    }
-                }
-            } else {
-                Inventario inventario = prestamo.getInventario();
-                if (inventario != null) {
-                    for (ObjComputador_Portatil comp : inventario.getLista_computadores()) {
-                        if (comp.getSerial().equals(busqueda)) {
-                            prestamoEncontrado = prestamo;
-                            break;
-                        }
-                    }
-                    for (ObjTableta_Grafica tab : inventario.getLista_impresoras()) {
-                        if (tab.getSerial().equals(busqueda)) {
-                            prestamoEncontrado = prestamo;
-                            break;
-                        }
-                    }
-                }
-            }
-            if (prestamoEncontrado != null) {
-                prestamos.remove(prestamoEncontrado); // Elimina el préstamo de la lista
-                break;
-            }
-        }
-        return prestamoEncontrado;
-    }
+    public void IngresarEstudiante(LinkedList<ObjEstudiante_Ingenieria> L1) {
+        boolean bandera = true;
+        int dec = 1;
+        while (bandera) {
 
-    public void ImprimirInventarioTotal(LinkedList<Inventario> inventarios) {
-        if (inventarios == null || inventarios.isEmpty()) {
-            System.out.println("No hay inventario para imprimir.");
-            return;
-        }
-        for (Inventario inventario : inventarios) {
-            System.out.println("--- INVENTARIO ---");
-            System.out.println("Computadores Portátiles:");
-            LinkedList<ObjComputador_Portatil> computadores = inventario.getLista_computadores();
-            if (computadores != null) {
-                for (ObjComputador_Portatil computador : computadores) {
-                    System.out.println("Serial: " + computador.getSerial());
-                    System.out.println("Marca: " + computador.getMarca());
-                    System.out.println("Tamaño: " + computador.getTamano() + " pulgadas");
-                    System.out.println("Precio: " + computador.getPrecio());
-                    System.out.println("Sistema Operativo: " + computador.getSistemaOperativo());
-                    System.out.println("Procesador: " + computador.getProcesador());
-                    System.out.println("-------------------");
-                }
+            ObjEstudiante_Ingenieria o = new ObjEstudiante_Ingenieria();
+            o.setNombre(sc.nextLine());
+            o.setApellido(sc.nextLine());
+            o.setCedula(sc.nextLine());
+            o.setNumeroSemestre(sc.nextInt());
+            o.setPromedioAcumulado(sc.nextFloat());
+            L1.add(o);
+
+            System.out.println("Se ingreso estiudiante exitosamente ");
+
+            System.out.println("Desea ingresar un nuevo estudiante? 1 si, 2 no");
+            dec = sc.nextInt();
+
+            if(dec == 1){
+                bandera = true;
             }
-            System.out.println("Tabletas Gráficas:");
-            LinkedList<ObjTableta_Grafica> tabletas = inventario.getLista_impresoras();
-            if (tabletas != null) {
-                for (ObjTableta_Grafica tableta : tabletas) {
-                    System.out.println("Serial: " + tableta.getSerial());
-                    System.out.println("Marca: " + tableta.getMarca());
-                    System.out.println("Tamaño: " + tableta.getTamano() + " pulgadas");
-                    System.out.println("Precio: " + tableta.getPrecio());
-                    System.out.println("Almacenamiento: " + tableta.getAlmacenamiento() + " GB");
-                    System.out.println("Peso: " + tableta.getPeso() + " kg");
-                    System.out.println("-------------------");
-                }
-            }
-        }
-    }
-    public void ImprimirInventarioDisponible(LinkedList<Inventario> inventarios) {
-        if (inventarios == null || inventarios.isEmpty()) {
-            System.out.println("No hay inventario para imprimir.");
-            return;
-        }
-        for (Inventario inventario : inventarios) {
-            System.out.println("--- INVENTARIO ---");
-            System.out.println("Computadores Portátiles:");
-            LinkedList<ObjComputador_Portatil> computadores = inventario.getLista_computadores();
-            if (computadores != null) {
-                for (ObjComputador_Portatil computador : computadores) {
-                    if (!computador.isPrestado()) {
-                    System.out.println("Serial: " + computador.getSerial());
-                    System.out.println("Marca: " + computador.getMarca());
-                    System.out.println("Tamaño: " + computador.getTamano() + " pulgadas");
-                    System.out.println("Precio: " + computador.getPrecio());
-                    System.out.println("Sistema Operativo: " + computador.getSistemaOperativo());
-                    System.out.println("Procesador: " + computador.getProcesador());
-                    System.out.println("-------------------");
-                    }
-                }
-            }
-            System.out.println("Tabletas Gráficas:");
-            LinkedList<ObjTableta_Grafica> tabletas = inventario.getLista_impresoras();
-            if (tabletas != null) {
-                for (ObjTableta_Grafica tableta : tabletas) {
-                    if (!tableta.isPrestado()) {
-                    System.out.println("Serial: " + tableta.getSerial());
-                    System.out.println("Marca: " + tableta.getMarca());
-                    System.out.println("Tamaño: " + tableta.getTamano() + " pulgadas");
-                    System.out.println("Precio: " + tableta.getPrecio());
-                    System.out.println("Almacenamiento: " + tableta.getAlmacenamiento() + " GB");
-                    System.out.println("Peso: " + tableta.getPeso() + " kg");
-                    System.out.println("-------------------");
-                    }
-                }
+
+            if (dec == 2) {
+                bandera = false;
             }
         }
     }
 
-    public void ImprimirEstudiantes(LinkedList<Estudiantes> estudiantes) {
-        if (estudiantes == null || estudiantes.isEmpty()) {
-            System.out.println("No hay estudiantes para imprimir.");
-            return;
-        }
-        for (Estudiantes estudiante : estudiantes) {
-            System.out.println("--- ESTUDIANTES ---");
-            System.out.println("Estudiantes de Diseño:");
-            LinkedList<ObjEstudiante_Diseno> estudiantesDiseno = estudiante.getEstudiantesDiseno();
-            if (estudiantesDiseno != null) {
-                for (ObjEstudiante_Diseno diseno : estudiantesDiseno) {
-                    System.out.println("Cédula: " + diseno.getCedula());
-                    System.out.println("Nombre: " + diseno.getNombre());
-                    System.out.println("Apellido: " + diseno.getApellido());
-                    System.out.println("Teléfono: " + diseno.getTelefono());
-                    System.out.println("Modalidad de Estudio: " + diseno.getModalidadEstudio());
-                    System.out.println("Cantidad de Asignaturas: " + diseno.getCantidadAsignaturas());
-                    System.out.println("Serial: " + diseno.getSerial());
-                    System.out.println("-------------------");
-                }
-            }else{
-                System.out.println("No hay estudiantes de Diseño.");
-            }
-            System.out.println("Estudiantes de Ingeniería:");
-            LinkedList<ObjEstudiante_Ingenieria> estudiantesIngenieria = estudiante.getEstudiantesIngenieria();
-            if (estudiantesIngenieria != null) {
-                for (ObjEstudiante_Ingenieria ingenieria : estudiantesIngenieria) {
-                    System.out.println("Cédula: " + ingenieria.getCedula());
-                    System.out.println("Nombre: " + ingenieria.getNombre());
-                    System.out.println("Apellido: " + ingenieria.getApellido());
-                    System.out.println("Teléfono: " + ingenieria.getTelefono());
-                    System.out.println("Número de Semestre: " + ingenieria.getNumeroSemestre());
-                    System.out.println("Promedio Acumulado: " + ingenieria.getPromedioAcumulado());
-                    System.out.println("Serial: " + ingenieria.getSerial());
-                    System.out.println("-------------------");
-                }
-            }else{
-                System.out.println("No hay estudiantes de Ingeniería.");
-            }
-        }
+    public void RegistrarPrestamoEquipo() {
+
+        System.out.println("Se registro prestamo de equipo a estudiante : ");
     }
 
-    public void ImprimirEstudiantesDisponibles(LinkedList<Estudiantes> estudiantes) {
-        if (estudiantes == null || estudiantes.isEmpty()) {
-            System.out.println("No hay estudiantes para imprimir.");
-            return;
-        }
-        for (Estudiantes estudiante : estudiantes) {
-            System.out.println("--- ESTUDIANTES ---");
-            System.out.println("Estudiantes de Diseño:");
-            LinkedList<ObjEstudiante_Diseno> estudiantesDiseno = estudiante.getEstudiantesDiseno();
-            if (estudiantesDiseno != null) {
-                for (ObjEstudiante_Diseno diseno : estudiantesDiseno) {
-                    if (!diseno.isEnPrestamo()) {
-                    System.out.println("Cédula: " + diseno.getCedula());
-                    System.out.println("Nombre: " + diseno.getNombre());
-                    System.out.println("Apellido: " + diseno.getApellido());
-                    System.out.println("Teléfono: " + diseno.getTelefono());
-                    System.out.println("Modalidad de Estudio: " + diseno.getModalidadEstudio());
-                    System.out.println("Cantidad de Asignaturas: " + diseno.getCantidadAsignaturas());
-                    System.out.println("Serial: " + diseno.getSerial());
-                    System.out.println("-------------------");
-                    }
-                }
-            }
-            System.out.println("Estudiantes de Ingeniería:");
-            LinkedList<ObjEstudiante_Ingenieria> estudiantesIngenieria = estudiante.getEstudiantesIngenieria();
-            if (estudiantesIngenieria != null) {
-                for (ObjEstudiante_Ingenieria ingenieria : estudiantesIngenieria) {
-                    if (!ingenieria.isEnPrestamo()) {
-                    System.out.println("Cédula: " + ingenieria.getCedula());
-                    System.out.println("Nombre: " + ingenieria.getNombre());
-                    System.out.println("Apellido: " + ingenieria.getApellido());
-                    System.out.println("Teléfono: " + ingenieria.getTelefono());
-                    System.out.println("Número de Semestre: " + ingenieria.getNumeroSemestre());
-                    System.out.println("Promedio Acumulado: " + ingenieria.getPromedioAcumulado());
-                    System.out.println("Serial: " + ingenieria.getSerial());
-                    System.out.println("-------------------");
-                    }
-                }
-            }
-        }
+    public void ModificarPrestamoEquipo() {
+
+        System.out.println("Se modifico prestamo de equipo a estudiante : ");
     }
 
-    public boolean ValidarCaracteresEspeciales(String cadena){
-        return cadena.matches("[a-zA-Z0-9]+");
+    public void DevolucionEquipo() {
+
+        System.out.println("Se registro devolucion de equipo a estudiante : ");
     }
 
-    public boolean ValidarNumeros(String cadena){
-        return cadena.matches("[a-zA-Z]+");
+    public void BuscarEquipo() {
+
+        System.out.println("El equipo : " + " Lo tiene el estudiante : ");
+    }
+
+    public void AgregarComputadorPortatil() {
+
+        System.out.println("Se registro computador exitosamente.");
+    }
+
+    public void ImprimirInventarioTotal() {
+
+        System.out.println("Inventario total");
     }
 }
